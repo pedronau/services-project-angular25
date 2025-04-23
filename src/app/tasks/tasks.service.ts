@@ -4,10 +4,15 @@ import { Task } from "./task.model";
 @Injectable({
   providedIn: 'root',
 })
-export class TaskService {
+export class TasksService {
   tasks = signal<Task[]>([]);
 
   addTask(taskData: { title: string; description: string }) {
-    this.tasks.update((oldTasks) => [...oldTasks, ])
+    const newTask: Task = {
+      ...taskData,
+      id: Math.random().toString(),
+      status: 'OPEN'
+    };
+    this.tasks.update((oldTasks) => [...oldTasks, newTask]);
   }
 }
